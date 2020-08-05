@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import TestButton from './TestButton'
 // import Dashboard from './Dashboard'
-// import NewTweet from './NewTweet'
+import NewQuestion from './NewQuestion'
 // import TweetPage from './TweetPage'
 // import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
@@ -22,7 +22,7 @@ class App extends Component {
           <div className='container'>
             {this.props.loading === true
               ? null
-              : <TestButton />}
+              : <NewQuestion />}
           </div>
       </div>
       // <Router>
