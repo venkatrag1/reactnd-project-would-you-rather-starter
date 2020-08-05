@@ -27,7 +27,7 @@ export function handleNewQuestion({optionOneText, optionTwoText, author}) {
             author})
         .then((question) => {
             dispatch(addQuestion(question));
-            dispatch(addUserQuestion(question.id, question.author));
+            dispatch(addUserQuestion({qid: question.id, authedUser: question.author}));
             dispatch(hideLoading());
         });
     };
@@ -43,8 +43,8 @@ export function handleQuestionAnswer({qid, answer}) {
             answer
         })
         .then(() => {
-            dispatch(answerQuestion(qid, answer, authedUser));
-            dispatch(answerUserQuestion(qid, answer, authedUser));
+            dispatch(answerQuestion({qid, answer, authedUser}));
+            dispatch(answerUserQuestion({qid, answer, authedUser}));
             dispatch(hideLoading());
         });
     }

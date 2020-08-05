@@ -16,7 +16,7 @@ export function addQuestion(question) {
     }
 }
 
-export function answerQuestion(qid, answer, authedUser) {
+export function answerQuestion({qid, answer, authedUser}) {
     return {
         type: ANSWER_QUESTION,
         qid,

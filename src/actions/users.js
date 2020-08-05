@@ -10,7 +10,7 @@ export function receiveUsers(users) {
     };
 }
 
-export function addUserQuestion(qid, authedUser) {
+export function addUserQuestion({qid, authedUser}) {
     return {
         type: ADD_USER_QUESTION,
         qid,
@@ -18,7 +18,7 @@ export function addUserQuestion(qid, authedUser) {
     }
 }
 
-export function answerUserQuestion(qid, answer, authedUser) {
+export function answerUserQuestion({qid, answer, authedUser}) {
     return {
         type: ANSWER_USER_QUESTION,
         qid,
