@@ -2,6 +2,7 @@ import '../styles/App.css';
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import TestButton from './TestButton'
 // import Dashboard from './Dashboard'
 // import NewTweet from './NewTweet'
 // import TweetPage from './TweetPage'
@@ -21,9 +22,7 @@ class App extends Component {
           <div className='container'>
             {this.props.loading === true
               ? null
-              : <div>
-                  Hello World
-                </div>}
+              : <TestButton />}
           </div>
       </div>
       // <Router>
