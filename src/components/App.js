@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import TestButton from './TestButton'
 // import Dashboard from './Dashboard'
-import NewQuestion from './NewQuestion'
+// import NewQuestion from './NewQuestion'
+import QuestionAnswer from './QuestionAnswer';
 // import TweetPage from './TweetPage'
 // import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
@@ -22,7 +23,8 @@ class App extends Component {
           <div className='container'>
             {this.props.loading === true
               ? null
-              : <NewQuestion />}
+              //: <NewQuestion />}
+              : <QuestionAnswer qid='6ni6ok3ym7mf1p33lnez'/>}
           </div>
       </div>
       // <Router>
