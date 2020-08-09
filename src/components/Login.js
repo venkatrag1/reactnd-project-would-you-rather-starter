@@ -1,31 +1,43 @@
-/* Reference: https://medium.com/@leonardobrunolima/react-tips-how-to-protect-routes-for-unauthorized-access-with-react-router-v4-73c0d451e0a2
-*/
+import React, { Component} from 'react'
+import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
+
 
 class Login extends React.Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         redirectToReferrer: false
-      };
-   }
-login = () => {
-      fakeAuthCentralState.authenticate(() => {
-         this.setState(() => ({
-            redirectToReferrer: true
-         }));
-      });
-   }
-render() {
-      const { from } = this.props.location.state || { from: { pathname: '/' } };
-      const { redirectToReferrer } = this.state;
-if (redirectToReferrer === true) {
-         this.props.history.push(from.pathname);
-      }
-return (
-         <div>
-            <p>Please, you need to be authenticated to to view this content</p>
-            <button onClick={this.login}>Log in</button>
-         </div>
-      )
-   }
+  handleAuthedUser = event => {
+    const { from } = this.props.location.state || {
+      from: { pathname: '/' }
+    };
+    const id = event.target.value;
+    /* If redirected here from a different route, get that route else set from to / */
+    this.props.dispatch(setAuthedUser(id)); // Login
+    this.props.history.push(from); // Redirect to from after setting authedUser
+  };
+
+  render() {
+    const { users } = this.props;
+    const userIds = Object.keys(users);
+
+    return (
+      <div>
+        <h2>Welcome to the Would You Rather App</h2>
+        <h3>Please Sign In to Continue</h3>
+        <h4>Sign In</h4>
+        <select onChange={this.handleAuthedUser} value="select">
+        <option value="select" disabled>Select..</option>
+        {userIds.map(user => (
+          <option key={user} value={user}>{users[user].name}</option>
+        ))}
+        </select>
+      </div>
+    );
+  }
 }
+
+function mapStateToProps({ users }) {
+  return {
+    users,
+  }
+}
+
+export default connect(mapStateToProps)(Login)

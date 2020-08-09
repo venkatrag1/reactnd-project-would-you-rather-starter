@@ -40,7 +40,7 @@ class NewQuestion extends Component {
       {options.map((option, i) => {
           const placeholder = `Enter ${(option.charAt(0).toUpperCase() + option.slice(1)).replace(/([a-z0-9])([A-Z])/g, '$1 $2')} Here`;
           return (
-            <div>
+            <div key={option}>
                 <input name={option} key={option} placeholder={placeholder}/>
                 {i !== options.length-1 && <h3>OR</h3>}
           </div>);

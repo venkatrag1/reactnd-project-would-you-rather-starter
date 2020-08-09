@@ -1,8 +1,7 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { handleQuestionAnswer } from '../actions/shared'
 
-class QuestionAnswer extends Component {
+class QuestionStats extends Component {
 
     state = {
         answer: '',
@@ -13,10 +12,6 @@ class QuestionAnswer extends Component {
         const { dispatch, qid } = this.props;
         const { answer } = this.state;
 
-        dispatch(handleQuestionAnswer({
-            qid,
-            answer
-        }));
   }
 
   handleInputChange = (e) => {
@@ -62,4 +57,4 @@ function mapStateToProps({ authedUser, users, questions }, {qid}) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionAnswer)
+export default connect(mapStateToProps)(QuestionStats)

@@ -1,9 +1,19 @@
-import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
+/* Reference: https://medium.com/@leonardobrunolima/react-tips-how-to-protect-routes-for-unauthorized-access-with-react-router-v4-73c0d451e0a2
+Make a Django style ProtectedRoute that interecepts all Routes and
+redirects to /login if user is not authenticated passing in the location object in the location state.
+*/
+import React from "react";
+import { Route, Redirect } from 'react-router-dom';
 
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
+const ProtectedRoute = ({ component: Component, authedUser, ...rest }) => (
    <Route {...rest} render={(props) => (
-      fakeAuthCentralState.isAuthenticated === true ?
-         <Component {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location }}} />
+      authedUser !== '' // is authenticated with valid authedUser
+      ?  <Component {...props} /> // Route to the component
+      : <Redirect to={{ pathname: '/login', state: { from: props.location }}} />
+      /* Redirect to Login. The new key from that we set in state of Redirect,
+       is accessible via this.props.location.state.from in the Login component pointed to by the pathname '/login' */
    )} />
 );
+
+export default ProtectedRoute;
