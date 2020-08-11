@@ -7,7 +7,7 @@ import Login from './Login'
 import ProtectedRoute from './ProtectedRoute'
 // import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
-import ResultOption from './ResultOption';
+import QuestionResult from './QuestionResult';
 // import TweetPage from './TweetPage'
 // import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
@@ -35,7 +35,7 @@ class App extends Component {
                       <div></div>
                       <Switch>
                         <Route path="/login" component={Login} />
-                        <ProtectedRoute path="/" exact component={() => <ResultOption optionText='sing' voteCount={2} totalVoteCount={6}/>} authedUser={authedUser} />
+                        <ProtectedRoute path="/" exact component={() => <QuestionResult qid='6ni6ok3ym7mf1p33lnez'/>} authedUser={authedUser} />
                       </Switch>
                     </Fragment>
                   )
