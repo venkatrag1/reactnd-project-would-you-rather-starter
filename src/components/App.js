@@ -7,8 +7,7 @@ import Login from './Login'
 import ProtectedRoute from './ProtectedRoute'
 // import Dashboard from './Dashboard'
 import NewQuestion from './NewQuestion'
-import QuestionStats from './QuestionStats';
-import OptionStatCard from './OptionStatCard';
+import ResultOption from './ResultOption';
 // import TweetPage from './TweetPage'
 // import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
@@ -36,7 +35,7 @@ class App extends Component {
                       <div></div>
                       <Switch>
                         <Route path="/login" component={Login} />
-                        <ProtectedRoute path="/" component={NewQuestion} authedUser={authedUser} />
+                        <ProtectedRoute path="/" exact component={() => <ResultOption optionText='sing' voteCount={2} totalVoteCount={6}/>} authedUser={authedUser} />
                       </Switch>
                     </Fragment>
                   )
@@ -44,21 +43,6 @@ class App extends Component {
               </div>
           </Fragment>
       </Router>
-      // <Router>
-      //   <Fragment>
-      //    <LoadingBar />
-      //     <div className='container'>
-      //       <Nav />
-      //       {this.props.loading === true
-      //         ? null
-      //         : <div>
-      //             <Route path='/' exact component={Dashboard} />
-      //             <Route path='/tweet/:id' component={TweetPage} />
-      //             <Route path='/new' component={NewTweet} />
-      //           </div>}
-      //     </div>
-      //   </Fragment>
-      // </Router>
 
     )
   }
