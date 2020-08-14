@@ -9,7 +9,7 @@ import ProtectedRoute from './ProtectedRoute'
 import QuestionAdd from './QuestionAdd'
 import QuestionResult from './QuestionResult';
 // import TweetPage from './TweetPage'
-// import Nav from './Nav'
+import NavBar from './NavBar'
 import LoadingBar from 'react-redux-loading'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -32,7 +32,6 @@ class App extends Component {
                   //: <QuestionStats qid='6ni6ok3ym7mf1p33lnez'/>}
                   : (
                     <Fragment>
-                      <div></div>
                       <Switch>
                         <Route path="/login" component={Login} />
                         <ProtectedRoute path="/add" exact component={QuestionAdd} authedUser={authedUser} />

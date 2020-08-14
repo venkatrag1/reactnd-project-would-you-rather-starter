@@ -2,14 +2,20 @@
 Make a Django style ProtectedRoute that interecepts all Routes and
 redirects to /login if user is not authenticated passing in the location object in the location state.
 */
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Redirect } from 'react-router-dom';
+import NavBar from './NavBar';
 
 
 const ProtectedRoute = ({ component: Component, authedUser, ...rest }) => (
    <Route {...rest} render={(props) => (
       authedUser !== '' // is authenticated with valid authedUser
-      ?  <Component {...props} /> // Route to the component
+      ?  (
+         <Fragment>
+            <NavBar />
+            <Component {...props} />
+         </Fragment>
+         )
       : <Redirect to={{ pathname: '/login', state: { from: props.location }}} />
       /* Redirect to Login. The new key from that we set in state of Redirect,
        is accessible via this.props.location.state.from in the Login component pointed to by the pathname '/login' */

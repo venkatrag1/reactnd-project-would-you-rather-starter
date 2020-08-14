@@ -76,9 +76,10 @@ li {
 }
 
 .avatar {
-  height: 50px;
+  height: 25px;
   border-radius: 25px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .tweet {
