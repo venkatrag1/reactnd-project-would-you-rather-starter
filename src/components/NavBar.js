@@ -18,7 +18,7 @@ class NavBar extends Component {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey='/add'>
-            New Question
+            Add Question
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>

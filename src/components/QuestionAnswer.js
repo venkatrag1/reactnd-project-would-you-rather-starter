@@ -1,22 +1,31 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { handleQuestionAnswer } from '../actions/shared'
+import { withRouter } from 'react-router-dom'
+
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 class QuestionAnswer extends Component {
 
-    state = {
-        answer: '',
-    }
+  state = {
+      answer: '',
+  }
 
   handleSubmit = (e) => {
       e.preventDefault();
-        const { dispatch, qid } = this.props;
-        const { answer } = this.state;
+      const { dispatch, qid } = this.props;
+      const { answer } = this.state;
 
-        dispatch(handleQuestionAnswer({
-            qid,
-            answer
-        }));
+      dispatch(handleQuestionAnswer({
+          qid,
+          answer
+      }));
+
+      this.props.history.push(`/questions/${qid}`)
+
   }
 
   handleInputChange = (e) => {
@@ -30,21 +39,18 @@ class QuestionAnswer extends Component {
     const { authorName, authorAvatarURL, options } = this.props;
     const { answer } = this.state;
     return (
-      <div className='card'>
-      <h5 className='card-header'>{authorName} asks:</h5>
-      <h4>Would you rather ...</h4>
-      <form onChange={this.handleInputChange} onSubmit={this.handleSubmit}>
-      <img src={authorAvatarURL} />
-      <ul className='bulletfree-list'>
-      {Object.keys(options).map((option) => (
-        <li key={option}>
-        <input type="radio" key={option} name="answer" value={option} /> {options[option]}
-        </li>
-      ))}
-      </ul>
-      <button type='submit' disabled={answer === ''}>Submit</button>
-      </form>
-      </div>
+      <Card.Body>
+        <Card.Title>Would you rather ...</Card.Title>
+        <Form onChange={this.handleInputChange} onSubmit={this.handleSubmit}>
+          {Object.keys(options).map((option) => (
+            <Form.Row key={option}>
+              <Form.Check type="radio" key={option} name="answer" value={option} label={options[option]}/>
+            </Form.Row>
+          ))}
+        <Button variant="primary" type='submit' disabled={answer === ''}>Submit</Button>
+        </Form>
+      </Card.Body>
+
     )
   }
 
@@ -62,4 +68,4 @@ function mapStateToProps({ authedUser, users, questions }, {qid}) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionAnswer)
+export default withRouter(connect(mapStateToProps)(QuestionAnswer));

@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import TestButton from './TestButton'
 import Login from './Login'
+import Logout from './Logout'
 import ProtectedRoute from './ProtectedRoute'
 // import Dashboard from './Dashboard'
-import QuestionAdd from './QuestionAdd'
-import QuestionResult from './QuestionResult';
+import Question from './Question'
+import QuestionAdd from './QuestionAdd';
 // import TweetPage from './TweetPage'
 import NavBar from './NavBar'
 import LoadingBar from 'react-redux-loading'
@@ -28,14 +29,14 @@ class App extends Component {
               <div className='container'>
                 {loading === true
                   ? null
-                  //: <NewQuestion />}
-                  //: <QuestionStats qid='6ni6ok3ym7mf1p33lnez'/>}
                   : (
                     <Fragment>
                       <Switch>
                         <Route path="/login" component={Login} />
-                        <ProtectedRoute path="/add" exact component={QuestionAdd} authedUser={authedUser} />
-                        <ProtectedRoute path="/" exact component={() => <QuestionResult qid='6ni6ok3ym7mf1p33lnez'/>} authedUser={authedUser} />
+                        <Route path="/logout" component={Logout} />
+                        <ProtectedRoute exact path="/add" component={QuestionAdd} authedUser={authedUser} />
+                        <ProtectedRoute path="/questions/:qid" component={(props) => <Question {...props}/>} authedUser={authedUser} />
+                        <ProtectedRoute exact path="/" component={() => <div></div>} authedUser={authedUser} />
                       </Switch>
                     </Fragment>
                   )
@@ -47,6 +48,9 @@ class App extends Component {
     )
   }
 }
+
+// <ProtectedRoute path="/" exact component={() => <QuestionViewResult qid='vthrdm985a262al8qx3do'/>} authedUser={authedUser} />
+
 
 function mapStateToProps({ authedUser }) {
   return {
