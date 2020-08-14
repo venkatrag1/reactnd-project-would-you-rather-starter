@@ -1,13 +1,13 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { handleNewQuestion, handleQuestionAnswer } from '../actions/shared'
+import { handleQuestionAdd, handleQuestionAnswer } from '../actions/shared'
 
 class TestButton extends Component {
   testAddQuestion = (e) => {
       e.preventDefault();
         const { dispatch, authedUser } = this.props;
         const q = { optionOneText: "Kalyanam", optionTwoText: "Odipolam", author: authedUser }
-        dispatch(handleNewQuestion(q));
+        dispatch(handleQuestionAdd(q));
 
   }
 

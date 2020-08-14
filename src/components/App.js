@@ -6,7 +6,7 @@ import TestButton from './TestButton'
 import Login from './Login'
 import ProtectedRoute from './ProtectedRoute'
 // import Dashboard from './Dashboard'
-import NewQuestion from './NewQuestion'
+import QuestionAdd from './QuestionAdd'
 import QuestionResult from './QuestionResult';
 // import TweetPage from './TweetPage'
 // import Nav from './Nav'
@@ -35,6 +35,7 @@ class App extends Component {
                       <div></div>
                       <Switch>
                         <Route path="/login" component={Login} />
+                        <ProtectedRoute path="/add" exact component={QuestionAdd} authedUser={authedUser} />
                         <ProtectedRoute path="/" exact component={() => <QuestionResult qid='6ni6ok3ym7mf1p33lnez'/>} authedUser={authedUser} />
                       </Switch>
                     </Fragment>

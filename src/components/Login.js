@@ -1,6 +1,8 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Card from 'react-bootstrap/Card'
 
 
 class Login extends React.Component {
@@ -19,17 +21,21 @@ class Login extends React.Component {
     const userIds = Object.keys(users);
 
     return (
-      <div>
-        <h2>Welcome to the Would You Rather App</h2>
-        <h3>Please Sign In to Continue</h3>
-        <h4>Sign In</h4>
-        <select onChange={this.handleAuthedUser} value="select">
-        <option value="select" disabled>Select..</option>
-        {userIds.map(user => (
-          <option key={user} value={user}>{users[user].name}</option>
-        ))}
-        </select>
-      </div>
+        <Card className='center container'>
+          <Card.Header>
+            <Card.Title>Welcome to the Would You Rather App!</Card.Title>
+            <Card.Subtitle>Please Sign In to Continue</Card.Subtitle>
+          </Card.Header>
+          <Card.Body>
+            <Card.Text>Sign In</Card.Text>
+            <select onChange={this.handleAuthedUser} value="select">
+            <option value="select" disabled>Select..</option>
+            {userIds.map(user => (
+              <option key={user} value={user}>{users[user].name}</option>
+            ))}
+            </select>
+        </Card.Body>
+        </Card>
     );
   }
 }

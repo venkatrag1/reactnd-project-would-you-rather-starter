@@ -18,7 +18,7 @@ export function handleInitialData() {
     };
 }
 
-export function handleNewQuestion({optionOneText, optionTwoText, author}) {
+export function handleQuestionAdd({optionOneText, optionTwoText, author}) {
     return (dispatch, getState) => {
         dispatch(showLoading());
         return saveQuestion({
