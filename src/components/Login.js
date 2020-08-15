@@ -1,7 +1,9 @@
-import React, { Component} from 'react'
-import { connect } from 'react-redux'
-import { setAuthedUser } from '../actions/authedUser'
-import Card from 'react-bootstrap/Card'
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
+
+import { setAuthedUser } from '../actions/authedUser';
+
+import Card from 'react-bootstrap/Card';
 
 
 class Login extends Component {
@@ -42,7 +44,7 @@ class Login extends Component {
 function mapStateToProps({ users }) {
   return {
     users,
-  }
+  };
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(Login);

@@ -1,13 +1,14 @@
-import React, { Component} from 'react'
-import { connect } from 'react-redux'
-import { handleQuestionAnswer } from '../actions/shared'
-import { withRouter } from 'react-router-dom'
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { handleQuestionAnswer } from '../actions/shared';
 
 import withQuestionCard from './QuestionCard';
 
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class QuestionAnswer extends Component {
 
@@ -25,7 +26,7 @@ class QuestionAnswer extends Component {
           answer
       }));
 
-      this.props.history.push(`/questions/${qid}`)
+      this.props.history.push(`/questions/${qid}`);
 
   }
 
@@ -52,7 +53,7 @@ class QuestionAnswer extends Component {
         </Form>
       </Card.Body>
 
-    )
+    );
   }
 
 }
@@ -62,7 +63,7 @@ function mapStateToProps({ questions }, {qid}) {
   const options = { optionOne: question.optionOne.text, optionTwo: question.optionTwo.text }
   return {
     options
-  }
+  };
 }
 
 export default withQuestionCard(withRouter(connect(mapStateToProps)(QuestionAnswer)));

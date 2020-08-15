@@ -4,6 +4,7 @@ redirects to /login if user is not authenticated passing in the location object 
 */
 import React, { Fragment } from "react";
 import { Route, Redirect } from 'react-router-dom';
+
 import Navigate from './Navigate';
 
 

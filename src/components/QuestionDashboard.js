@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Card from 'react-bootstrap/Card'
-import Nav from 'react-bootstrap/Nav'
+import QuestionPreview from './QuestionPreview';
 
-import QuestionPreview from './QuestionPreview'
+import Card from 'react-bootstrap/Card';
+import Nav from 'react-bootstrap/Nav';
 
 class QuestionDashboard extends Component {
 

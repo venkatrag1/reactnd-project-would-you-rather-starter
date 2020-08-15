@@ -1,11 +1,11 @@
-import React, { Component} from 'react'
-import { connect } from 'react-redux'
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
 import ResultOptionCard from './ResultOptionCard';
 
 import withQuestionCard from './QuestionCard';
 
-import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
 
 class QuestionViewResult extends Component {
 
@@ -25,14 +25,14 @@ class QuestionViewResult extends Component {
           </Row>
         ))}
       </Card.Body>
-    )
+    );
   }
 
 }
 
 function mapStateToProps({ authedUser, users, questions }, {qid}) {
   const question = questions[qid];
-  const options = { optionOne: question.optionOne, optionTwo: question.optionTwo }
+  const options = { optionOne: question.optionOne, optionTwo: question.optionTwo };
   const totalVoteCount = question.optionOne.votes.length + question.optionTwo.votes.length;
   const userOption = users[authedUser].answers[qid];
 

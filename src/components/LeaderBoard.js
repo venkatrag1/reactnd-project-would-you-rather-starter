@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import LeaderCard from './LeaderCard'
+import LeaderCard from './LeaderCard';
 
 class LeaderBoard extends Component {
 
@@ -27,6 +27,7 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps({ authedUser, questions, users }) {
+    // Get the relevant info needed for LeaderCard here since we anyway need to compute score for sorting
         const userList = Object.keys(users).map(uid => {
             const user = users[uid];
             return {
@@ -40,7 +41,7 @@ function mapStateToProps({ authedUser, questions, users }) {
         });
         return {
             userList: userList.sort((a,b) => b.score - a.score)
-        }
+        };
 }
 
 export default connect(mapStateToProps)(LeaderBoard);

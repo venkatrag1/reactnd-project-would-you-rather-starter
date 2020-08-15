@@ -1,6 +1,7 @@
-import React, { Component} from 'react'
-import ProgressBar from 'react-bootstrap/ProgressBar'
-import Card from 'react-bootstrap/Card'
+import React, { Component} from 'react';
+
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import Card from 'react-bootstrap/Card';
 
 class ResultOptionCard extends Component {
 
@@ -16,7 +17,7 @@ class ResultOptionCard extends Component {
           <Card.Text> {voteCount} out of {totalVoteCount} votes </Card.Text>
         </Card.Body>
       </Card>
-    )
+    );
   }
 
 }

@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import Nav from 'react-bootstrap/Nav'
-import Image from 'react-bootstrap/Image'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import Nav from 'react-bootstrap/Nav';
+import Image from 'react-bootstrap/Image';
 
 class Navigate extends Component {
   render() {
@@ -36,7 +37,7 @@ class Navigate extends Component {
           </Nav.Link>
         </Nav.Item>
         </Nav>
-    )
+    );
   }
 }
 
@@ -44,7 +45,7 @@ function mapStateToProps({ authedUser, users }) {
   return {
     userName: users[authedUser].name,
     userAvatarURL: users[authedUser].avatarURL,
-  }
+  };
 }
 
 export default withRouter(connect(mapStateToProps)(Navigate));

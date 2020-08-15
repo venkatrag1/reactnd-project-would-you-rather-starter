@@ -1,10 +1,10 @@
-import React, { Component} from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 
 import withQuestionCard from './QuestionCard';
 
@@ -14,7 +14,7 @@ class QuestionPreview extends Component {
   handleViewPoll = (e) => {
     e.preventDefault();
     const { qid } = this.props;
-    this.props.history.push(`/questions/${qid}`)
+    this.props.history.push(`/questions/${qid}`);
   }
 
   render() {
@@ -43,7 +43,7 @@ class QuestionPreview extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, {qid}) {
   const question = questions[qid];
-  const options = { optionOne: question.optionOne.text, optionTwo: question.optionTwo.text }
+  const options = { optionOne: question.optionOne.text, optionTwo: question.optionTwo.text };
   return {
     options
   }

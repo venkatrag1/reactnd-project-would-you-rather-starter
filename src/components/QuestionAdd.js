@@ -1,17 +1,18 @@
-import React, { Component} from 'react'
-import { connect } from 'react-redux'
-import { handleQuestionAdd } from '../actions/shared'
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
 
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import { handleQuestionAdd } from '../actions/shared';
+
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class QuestionAdd extends Component {
 
-    state = {
-        optionOneText: '',
-        optionTwoText: '',
-    }
+  state = {
+      optionOneText: '',
+      optionTwoText: '',
+  }
 
   handleSubmit = (e) => {
       e.preventDefault();
@@ -27,7 +28,7 @@ class QuestionAdd extends Component {
                 optionOneText: '',
                 optionTwoText: ''
             }
-        ))
+        ));
 
         this.props.history.push('/');
 
@@ -52,7 +53,7 @@ class QuestionAdd extends Component {
         <Card.Text>Would you rather ...</Card.Text>
         <Form onChange={this.handleInputChange} onSubmit={this.handleSubmit}>
         {options.map((option, i) => {
-            const placeholder = `Enter ${(option.charAt(0).toUpperCase() + option.slice(1)).replace(/([a-z0-9])([A-Z])/g, '$1 $2')} Here`;
+            const placeholder = `Enter ${(option.charAt(0).toUpperCase() + option.slice(1)).replace(/([a-z0-9])([A-Z])/g, '$1 $2')} Here`; // Convert optionOne to Option One etc
             return (
               <Form.Row key={option}>
                   <Form.Control type='input' name={option} key={option} placeholder={placeholder}/>
@@ -63,15 +64,14 @@ class QuestionAdd extends Component {
         </Form>
       </Card.Body>
       </Card>
-
-    )
+    );
   }
 }
 
 function mapStateToProps({ authedUser }) {
   return {
     authedUser,
-  }
+  };
 }
 
-export default connect(mapStateToProps)(QuestionAdd)
+export default connect(mapStateToProps)(QuestionAdd);

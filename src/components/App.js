@@ -1,21 +1,24 @@
 import '../styles/App.css';
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import { handleInitialData } from '../actions/shared'
-import Login from './Login'
-import Logout from './Logout'
-import ProtectedRoute from './ProtectedRoute'
-import QuestionDashboard from './QuestionDashboard'
-import LeaderBoard from './LeaderBoard'
-import Question from './Question'
+
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import LoadingBar from 'react-redux-loading';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import { handleInitialData } from '../actions/shared';
+
+import Login from './Login';
+import Logout from './Logout';
+import ProtectedRoute from './ProtectedRoute';
+import QuestionDashboard from './QuestionDashboard';
+import LeaderBoard from './LeaderBoard';
+import Question from './Question';
 import QuestionAdd from './QuestionAdd';
-import NotFound from './NotFound'
-import LoadingBar from 'react-redux-loading'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import NotFound from './NotFound';
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.props.dispatch(handleInitialData());
   }
 
   render() {
@@ -46,7 +49,7 @@ class App extends Component {
           </Fragment>
       </Router>
 
-    )
+    );
   }
 }
 
@@ -56,4 +59,4 @@ function mapStateToProps({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

@@ -1,6 +1,33 @@
 # Would You Rather Project
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+## Installing the app
+Clone this git repository and cd into the project and do
+```
+> npm install
+```
+
+This will install the node dependencies listed in package.json. After the installation completes, start the app as follows
+```
+> npm start
+```
+
+Navigate to http://localhost:3000/ on your browser.
+
+## Architecture
+
+This app was create using create-react-app, and uses react-redux for state management and react-bootstrap for styling.
+
+The redux actions are created in src/actions folder and the corresponding reducers are in src/reducers. Thunk middleware is used to handle async fetches,
+and this is setup in src/middleware folder.
+
+All the components and containers are in src/components folder. Pages that need authentication are wrapped behind ProtectedComponent. For displaying the questions, a higher order component called QuestionCard is created that wraps around the Poll answers (QuestionAnswer) and Poll results (QuestionViewResult) components, and is also used in the preview cards on the home page (QuestionPreview). Separate helper components are created for ResultOptionCard and LeaderCard, and all other components are directly hooked up to Routes in app.js.
+
+The file src/index.css has some additional styling elements.
+
+An api.js file was added to utils folder to wrap around the fake database calls in _DATA.js which was provided to us.
+
+
+## What was provided prior
 
 The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
 
@@ -55,17 +82,17 @@ Your code will talk to the database via 4 methods:
 
 1) `_getUsers()` Method
 
-*Description*: Get all of the existing users from the database.  
+*Description*: Get all of the existing users from the database.
 *Return Value*: Object where the key is the user’s id and the value is the user object.
 
 2) `_getQuestions()` Method
 
-*Description*: Get all of the existing questions from the database.  
+*Description*: Get all of the existing questions from the database.
 *Return Value*: Object where the key is the question’s id and the value is the question object.
 
 3) `_saveQuestion(question)` Method
 
-*Description*: Save the polling question in the database.  
+*Description*: Save the polling question in the database.
 *Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
 
 | Attribute | Type | Description |

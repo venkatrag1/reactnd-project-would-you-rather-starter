@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
 import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 
 
 const withQuestionCard = (CardContent) => {
@@ -33,7 +34,7 @@ const withQuestionCard = (CardContent) => {
         return {
             authorName: author.name,
             authorAvatarURL: author.avatarURL,
-        }
+        };
     }
 
     return connect(mapStateToProps)(CardWrapper);
