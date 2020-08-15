@@ -6,17 +6,39 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 
+import Nav from 'react-bootstrap/Nav'
+
 import QuestionPreview from './QuestionPreview'
 
 class QuestionDashboard extends Component {
 
+    state = {
+        selectedTab: 'unanswered'
+    }
+
     render() {
-        const {questions, users} = this.props;
+        const {qids} = this.props;
+        const {selectedTab} = this.state;
         return (
-            <div>
+            <Card className='container'>
+                <Card.Header>
+                    <Nav fill variant="tabs" onSelect={(selectedTab) => this.setState(() => ({selectedTab}))}>
+                        <Nav.Item>
+                            <Nav.Link eventKey='unanswered'>
+                                Unanswered Questions
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey='answered'>
+                                Answered Questions
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                </Card.Header>
+            <Card.Body>
                 <h3 className='center'>Your timeline</h3>
                 <ul className='dashboard-list'>
-                    {this.props.qids.map( qid => {
+                    {qids[selectedTab].map( qid => {
                     return (
                         <li key={qid}>
                             <QuestionPreview qid={qid} />
@@ -24,17 +46,20 @@ class QuestionDashboard extends Component {
                     )}
                     )}
                 </ul>
-            </div>
+            </Card.Body>
+            </Card>
         );
     }
 
 }
 
-function mapStateToProps({ questions, users }) {
+function mapStateToProps({ authedUser, questions, users }) {
+    const sorted_qids = Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
     return {
-        qids: ['vthrdm985a262al8qx3do', '6ni6ok3ym7mf1p33lnez', '8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9'],
-        questions,
-        users
+        qids: {
+            answered: sorted_qids.filter(qid => users[authedUser].answers.hasOwnProperty(qid)),
+            unanswered: sorted_qids.filter(qid => !users[authedUser].answers.hasOwnProperty(qid))
+        }
     };
 }
 
