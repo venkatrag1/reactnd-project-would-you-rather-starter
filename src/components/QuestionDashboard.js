@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
-
 import Nav from 'react-bootstrap/Nav'
 
 import QuestionPreview from './QuestionPreview'
@@ -35,18 +31,17 @@ class QuestionDashboard extends Component {
                         </Nav.Item>
                     </Nav>
                 </Card.Header>
-            <Card.Body>
-                <h3 className='center'>Your timeline</h3>
-                <ul className='dashboard-list'>
-                    {qids[selectedTab].map( qid => {
-                    return (
-                        <li key={qid}>
-                            <QuestionPreview qid={qid} />
-                        </li>
-                    )}
-                    )}
-                </ul>
-            </Card.Body>
+                <Card.Body>
+                    <ul className='dashboard-list'>
+                        {qids[selectedTab].map( qid => {
+                        return (
+                            <li key={qid}>
+                                <QuestionPreview qid={qid} />
+                            </li>
+                        )}
+                        )}
+                    </ul>
+                </Card.Body>
             </Card>
         );
     }

@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom'
 import withQuestionCard from './QuestionCard';
 
 import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -38,7 +37,7 @@ class QuestionAnswer extends Component {
   }
 
   render() {
-    const { authorName, authorAvatarURL, options } = this.props;
+    const { options } = this.props;
     const { answer } = this.state;
     return (
       <Card.Body>

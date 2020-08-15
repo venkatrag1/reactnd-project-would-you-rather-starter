@@ -1,11 +1,10 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import Jumbotron from 'react-bootstrap/Jumbotron'
 import Card from 'react-bootstrap/Card'
 
 
-class Login extends React.Component {
+class Login extends Component {
   handleAuthedUser = event => {
     const { from } = this.props.location.state || {
       from: { pathname: '/' }

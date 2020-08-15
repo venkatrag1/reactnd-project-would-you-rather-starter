@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import ResultOptionCard from './ResultOptionCard'
 
 import withQuestionCard from './QuestionCard';
 
@@ -19,7 +18,7 @@ class QuestionPreview extends Component {
   }
 
   render() {
-    const { options, totalVoteCount, userOption } = this.props;
+    const { options } = this.props;
     const optionIDList = Object.keys(options);
     return (
       <Card.Body>

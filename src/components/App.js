@@ -2,14 +2,14 @@ import '../styles/App.css';
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import TestButton from './TestButton'
 import Login from './Login'
 import Logout from './Logout'
 import ProtectedRoute from './ProtectedRoute'
 import QuestionDashboard from './QuestionDashboard'
+import LeaderBoard from './LeaderBoard'
 import Question from './Question'
 import QuestionAdd from './QuestionAdd';
-// import TweetPage from './TweetPage'
+import NotFound from './NotFound'
 import LoadingBar from 'react-redux-loading'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -33,9 +33,11 @@ class App extends Component {
                       <Switch>
                         <Route path="/login" component={Login} />
                         <Route path="/logout" component={Logout} />
-                        <ProtectedRoute exact path="/add" component={QuestionAdd} authedUser={authedUser} />
                         <ProtectedRoute path="/questions/:qid" component={(props) => <Question {...props}/>} authedUser={authedUser} />
+                        <ProtectedRoute exact path="/add" component={QuestionAdd} authedUser={authedUser} />
+                        <ProtectedRoute exact path="/leaderboard" component={LeaderBoard} authedUser={authedUser} />
                         <ProtectedRoute exact path="/" component={QuestionDashboard} authedUser={authedUser} />
+                        <Route component={NotFound}/>
                       </Switch>
                     </Fragment>
                   )

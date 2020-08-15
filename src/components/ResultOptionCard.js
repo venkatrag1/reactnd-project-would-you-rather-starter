@@ -1,5 +1,4 @@
 import React, { Component} from 'react'
-import { connect } from 'react-redux'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Card from 'react-bootstrap/Card'
 

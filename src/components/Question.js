@@ -3,21 +3,20 @@ import { connect } from 'react-redux'
 
 import QuestionViewResult from './QuestionViewResult';
 import QuestionAnswer from './QuestionAnswer';
+import NotFound from './NotFound';
 
-import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
-
-class Question extends React.Component {
+class Question extends Component {
 
   render() {
     const { answered, qid  } = this.props;
     return (
         <Fragment>
-            {answered === true
-            ? <QuestionViewResult qid={qid}/>
-            : <QuestionAnswer qid={qid} />
+            { answered === undefined
+            ? <NotFound />
+            : (answered === true
+                ? <QuestionViewResult qid={qid}/>
+                : <QuestionAnswer qid={qid} />
+                )
             }
         </Fragment>
     )
@@ -26,8 +25,8 @@ class Question extends React.Component {
 
 function mapStateToProps({ questions, users, authedUser }, props) {
   const { qid } = props.match.params;
-  const question = questions[qid];
-  const answered = users[authedUser].answers.hasOwnProperty(qid);
+  const question = questions[qid] || undefined;
+  const answered = question ? users[authedUser].answers.hasOwnProperty(qid) : undefined;
 
   return {
     qid,
