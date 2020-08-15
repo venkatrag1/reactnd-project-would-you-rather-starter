@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 
 import Tab from 'react-bootstrap/Tab'
+import NavBar from 'react-bootstrap/NavBar'
 import Nav from 'react-bootstrap/Nav'
 import Image from 'react-bootstrap/Image'
 
-class NavBar extends Component {
+class Navigate extends Component {
   render() {
     const {userName, userAvatarURL} = this.props;
     return (
@@ -37,7 +38,7 @@ class NavBar extends Component {
             Logout
           </Nav.Link>
         </Nav.Item>
-      </Nav>
+        </Nav>
     )
   }
 }
@@ -49,4 +50,4 @@ function mapStateToProps({ authedUser, users }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(NavBar));
+export default withRouter(connect(mapStateToProps)(Navigate));

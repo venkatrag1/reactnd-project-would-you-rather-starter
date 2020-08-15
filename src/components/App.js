@@ -6,11 +6,10 @@ import TestButton from './TestButton'
 import Login from './Login'
 import Logout from './Logout'
 import ProtectedRoute from './ProtectedRoute'
-// import Dashboard from './Dashboard'
+import QuestionDashboard from './QuestionDashboard'
 import Question from './Question'
 import QuestionAdd from './QuestionAdd';
 // import TweetPage from './TweetPage'
-import NavBar from './NavBar'
 import LoadingBar from 'react-redux-loading'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -36,7 +35,7 @@ class App extends Component {
                         <Route path="/logout" component={Logout} />
                         <ProtectedRoute exact path="/add" component={QuestionAdd} authedUser={authedUser} />
                         <ProtectedRoute path="/questions/:qid" component={(props) => <Question {...props}/>} authedUser={authedUser} />
-                        <ProtectedRoute exact path="/" component={() => <div></div>} authedUser={authedUser} />
+                        <ProtectedRoute exact path="/" component={QuestionDashboard} authedUser={authedUser} />
                       </Switch>
                     </Fragment>
                   )

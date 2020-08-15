@@ -4,7 +4,7 @@ redirects to /login if user is not authenticated passing in the location object 
 */
 import React, { Fragment } from "react";
 import { Route, Redirect } from 'react-router-dom';
-import NavBar from './NavBar';
+import Navigate from './Navigate';
 
 
 const ProtectedRoute = ({ component: Component, authedUser, ...rest }) => (
@@ -12,7 +12,7 @@ const ProtectedRoute = ({ component: Component, authedUser, ...rest }) => (
       authedUser !== '' // is authenticated with valid authedUser
       ?  (
          <Fragment>
-            <NavBar />
+            <Navigate />
             <Component {...props} />
          </Fragment>
          )

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Card from 'react-bootstrap/Card'
 
-class ResultOption extends Component {
+class ResultOptionCard extends Component {
 
   render() {
     const { optionText, voteCount, totalVoteCount, selected } = this.props;
@@ -22,4 +22,4 @@ class ResultOption extends Component {
 
 }
 
-export default ResultOption;
+export default ResultOptionCard;
