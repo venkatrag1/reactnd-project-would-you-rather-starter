@@ -1,19 +1,19 @@
 import React, {PureComponent} from 'react';
-
+import { connect } from 'react-redux'
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 
-const insideQuestionCard = (CardContent) => {
+const withQuestionCard = (CardContent) => {
   class CardWrapper extends PureComponent {
 
     render() {
-    const {title, authorName, authorAvatarURL} = this.props;
+    const {authorName, authorAvatarURL} = this.props;
 
       return (
       <Card className='container'>
-        <Card.Title className='card-header'>{title}</Card.Title>
+        <Card.Title className='card-header'>{authorName} asks:</Card.Title>
         <Row>
           <Col md={4}>
             <Image src={authorAvatarURL} className='card-img center align-middle' roundedCircle/>
@@ -29,4 +29,4 @@ const insideQuestionCard = (CardContent) => {
   return CardWrapper;
 }
 
-export default insideQuestionCard;
+export default withQuestionCard;

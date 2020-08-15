@@ -19,7 +19,7 @@ class QuestionDashboard extends Component {
                     {this.props.qids.map( qid => {
                     return (
                         <li key={qid}>
-                            <QuestionPreview qid={qid} title='thanni'/>
+                            <QuestionPreview qid={qid} />
                         </li>
                     )}
                     )}

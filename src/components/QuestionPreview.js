@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import ResultOptionCard from './ResultOptionCard'
 
-import insideQuestionCard from './QuestionCard';
+import withQuestionCard from './QuestionCard';
 
 class QuestionPreview extends Component {
 
@@ -74,13 +74,13 @@ function mapStateToProps({ authedUser, users, questions }, {qid}) {
   const userOption = users[authedUser].answers[qid];
 
   return {
-    authedUser,
     authorName: author.name,
     authorAvatarURL: author.avatarURL,
+    authedUser,
     options,
     totalVoteCount,
     userOption
   }
 }
 
-export default connect(mapStateToProps)(insideQuestionCard(QuestionPreview))
+export default connect(mapStateToProps)(withQuestionCard(QuestionPreview))
