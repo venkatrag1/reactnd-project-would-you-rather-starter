@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { handleQuestionAnswer } from '../actions/shared'
 import { withRouter } from 'react-router-dom'
 
+import withQuestionCard from './QuestionCard';
+
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
@@ -56,16 +58,12 @@ class QuestionAnswer extends Component {
 
 }
 
-function mapStateToProps({ authedUser, users, questions }, {qid}) {
+function mapStateToProps({ questions }, {qid}) {
   const question = questions[qid];
-  const author = users[question.author];
   const options = { optionOne: question.optionOne.text, optionTwo: question.optionTwo.text }
   return {
-    authedUser,
-    authorName: author.name,
-    authorAvatarURL: author.avatarURL,
-    options,
+    options
   }
 }
 
-export default withRouter(connect(mapStateToProps)(QuestionAnswer));
+export default withQuestionCard(withRouter(connect(mapStateToProps)(QuestionAnswer)));

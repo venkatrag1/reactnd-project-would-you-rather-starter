@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import QuestionViewResult from './QuestionViewResult';
 import QuestionAnswer from './QuestionAnswer';
 
-import withQuestionCard from './QuestionCard';
-
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -29,15 +27,12 @@ class Question extends React.Component {
 function mapStateToProps({ questions, users, authedUser }, props) {
   const { qid } = props.match.params;
   const question = questions[qid];
-  const author = users[question.author];
   const answered = users[authedUser].answers.hasOwnProperty(qid);
 
   return {
     qid,
-    authorName: author.name,
-    authorAvatarURL: author.avatarURL,
     answered
   }
 }
 
-export default connect(mapStateToProps)(withQuestionCard(Question))
+export default connect(mapStateToProps)(Question);

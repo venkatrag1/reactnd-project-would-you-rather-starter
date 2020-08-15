@@ -1,10 +1,9 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { handleQuestionAdd } from '../actions/shared'
+import { withRouter } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import ResultOptionCard from './ResultOptionCard'
 
@@ -12,55 +11,32 @@ import withQuestionCard from './QuestionCard';
 
 class QuestionPreview extends Component {
 
-    state = {
-        optionOneText: '',
-        optionTwoText: '',
-    }
 
-  handleSubmit = (e) => {
-      e.preventDefault();
-        const { dispatch, authedUser } = this.props;
-
-        dispatch(handleQuestionAdd({
-            author: authedUser,
-            ...this.state,
-        }));
-
-        this.setState(() => (
-            {
-                optionOneText: '',
-                optionTwoText: ''
-            }
-        ))
-
-        this.props.history.push('/');
-
-  }
-
-  handleInputChange = (e) => {
-      const option = e.target.name;
-      const optionText = e.target.value;
-      this.setState(() => ({
-          [option]: optionText
-      }));
+  handleViewPoll = (e) => {
+    e.preventDefault();
+    const { qid } = this.props;
+    this.props.history.push(`/questions/${qid}`)
   }
 
   render() {
     const { options, totalVoteCount, userOption } = this.props;
-
+    const optionIDList = Object.keys(options);
     return (
       <Card.Body>
-        <Card.Title> Results: </Card.Title>
-        {Object.keys(options).map((option) => (
-          <Row key={option}>
-            <ResultOptionCard
-              key={option}
-              optionText={options[option].text}
-              voteCount={options[option].votes.length}
-              totalVoteCount={totalVoteCount}
-              selected={option === userOption}/>
-          </Row>
+        <Card.Title>Would you rather ...</Card.Title>
+        {optionIDList.map((option, i) => (
+            <div key={option}>
+                <Row key={option}>
+                    <Card.Text>{options[option]}</Card.Text>
+                </Row>
+                {i !== optionIDList.length-1 && (
+                <Row key={i}>
+                    <Card.Text className='text-muted'>OR</Card.Text>
+                </Row>
+                )}
+            </div>
         ))}
+        <Button variant="info" type='submit' onClick={this.handleViewPoll}>View Poll</Button>
       </Card.Body>
     )
   }
@@ -68,19 +44,10 @@ class QuestionPreview extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, {qid}) {
   const question = questions[qid];
-  const author = users[question.author];
-  const options = { optionOne: question.optionOne, optionTwo: question.optionTwo }
-  const totalVoteCount = question.optionOne.votes.length + question.optionTwo.votes.length;
-  const userOption = users[authedUser].answers[qid];
-
+  const options = { optionOne: question.optionOne.text, optionTwo: question.optionTwo.text }
   return {
-    authorName: author.name,
-    authorAvatarURL: author.avatarURL,
-    authedUser,
-    options,
-    totalVoteCount,
-    userOption
+    options
   }
 }
 
-export default connect(mapStateToProps)(withQuestionCard(QuestionPreview))
+export default withQuestionCard(withRouter(connect(mapStateToProps)(QuestionPreview)));

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink, withRouter } from 'react-router-dom'
-
-import Tab from 'react-bootstrap/Tab'
-import NavBar from 'react-bootstrap/NavBar'
+import { withRouter } from 'react-router-dom'
 import Nav from 'react-bootstrap/Nav'
 import Image from 'react-bootstrap/Image'
 

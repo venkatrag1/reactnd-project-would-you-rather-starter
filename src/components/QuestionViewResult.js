@@ -2,6 +2,8 @@ import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import ResultOptionCard from './ResultOptionCard';
 
+import withQuestionCard from './QuestionCard';
+
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 
@@ -30,7 +32,6 @@ class QuestionViewResult extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, {qid}) {
   const question = questions[qid];
-  const author = users[question.author];
   const options = { optionOne: question.optionOne, optionTwo: question.optionTwo }
   const totalVoteCount = question.optionOne.votes.length + question.optionTwo.votes.length;
   const userOption = users[authedUser].answers[qid];
@@ -42,4 +43,4 @@ function mapStateToProps({ authedUser, users, questions }, {qid}) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionViewResult)
+export default withQuestionCard(connect(mapStateToProps)(QuestionViewResult));

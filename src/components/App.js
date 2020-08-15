@@ -48,9 +48,6 @@ class App extends Component {
   }
 }
 
-// <ProtectedRoute path="/" exact component={() => <QuestionViewResult qid='vthrdm985a262al8qx3do'/>} authedUser={authedUser} />
-
-
 function mapStateToProps({ authedUser }) {
   return {
     authedUser
